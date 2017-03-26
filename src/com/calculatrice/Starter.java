@@ -1,25 +1,27 @@
 package com.calculatrice;
 
-import java.util.Scanner;
+import java.util.*;
 
 public class Starter {
 
 	public static void main(String[] args) {
 		float a, b, result;
-		char operator = '#', recommencer ='N';
+		char operator, recommencer ='N';
 		
 		System.out.println("Bonjour et bienvenue dans la calculatrice");
 		//coeur du programme
 		do{
 			a = askFloat("Entrez le premier nombre");
-			while(operator != '+' && operator != '-' && operator != '/' && operator != '*'){
-				operator = askChar("Rentrez l'opérateur !");
-			}
+			
+			do{
+			 operator = askChar("Rentrez l'opérateur !");
+			}while(operator != '+' && operator != '-' && operator != '/' && operator != '*');
 			b = askFloat("Entrez le deuxième nombre");
 			result = calculer(a, operator, b);
 			System.out.println("Le résultat de "+a+" "+operator+" "+b+" = "+result);
 			recommencer = askChar("Voulez-vous recommencer?(O/o pour recommence)");
 		}while(recommencer == 'O' || recommencer == 'o');
+		System.out.println("Au revoir !");
 	}
 	public static float askFloat(String message){
 		//déclarer variables
@@ -29,7 +31,7 @@ public class Starter {
 		
 		// récupération du float
 		while(!isOk){
-			System.out.println();
+			System.out.println(message);
 		try{
 			//instruction à faire
 			result = clavier.nextFloat();
@@ -52,6 +54,7 @@ public class Starter {
 		
 		//récupération du char
 		while(!isOk){
+			System.out.println(message);
 			try{
 				//Instruction à faire
 				line = clavier.nextLine();
